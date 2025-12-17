@@ -12,10 +12,25 @@ h2{
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
 }
-.algo-selection p {
+.algo-selection-1{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.algo-selection-2{
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.algo-selection-1 p {
+    margin: 0;
+}
+.algo-selection-2 p {
     margin: 0;
 }
 #selection1{
@@ -35,12 +50,32 @@ h2{
     border-radius: 6px;
     border: 1px solid;
 }
-#before{
+.input{
+    margin-top: 10px;
+    display: none;
+}
+#set-array{
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 6px;
+    border: 1px solid;
+    background-color: lightseagreen;
+}
+#elements{
+    width: 500px;
+}
+.mode{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+/* #before{
     margin-right: 6px;
     vertical-align: middle;
     border-radius: 6px;
     border: 1px solid;
-}
+} */
 #play{
     margin-right: 6px;
     vertical-align: middle;
@@ -48,7 +83,7 @@ h2{
     border: 1px solid;
     background-color: lightseagreen;
 }
-#next{
+/* #next{
     margin-right: 6px;
     vertical-align: middle;
     border-radius: 6px;
@@ -58,7 +93,7 @@ h2{
     vertical-align: middle;
     border-radius: 6px;
     border: 1px solid;
-}
+} */
 .speed-selection{
     display: flex;
     align-items: center;
@@ -76,14 +111,39 @@ h2{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom:10px;
-}
-.bar-container{
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
+/* Khung chứa chung cho mọi chế độ */
+.bar-container {
+    background-color: #f1f3f5; /* Màu nền xám nhạt */
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    /* Flexbox để các cột xếp hàng ngang và mọc từ dưới lên */
+    display: flex;
+    align-items: flex-end;    /* Cột bám vào đáy khung */
+    justify-content: center; /* Cột nằm giữa khung */
+    padding: 10px;
+    width: 100%;
+    height: 400px;           /* Chiều cao cố định để không bị nhảy khi tạo mảng */
+    margin-bottom: 10px;
+    overflow: hidden;        /* Cột quá cao sẽ bị cắt, không tràn ra ngoài */
+}
+/* Style cho từng cột */
+.bar {
+    background-color: lightseagreen;
+    margin: 0 1px;            /* Khoảng cách giữa các cột */
+    width: 100%;              /* Để các cột tự chia đều không gian */
+    /* Hiệu ứng chuyển động khi đổi chiều cao và màu sắc */
+    transition: height 0.2s ease, background-color 0.2s ease;
+}
+/* Tinh chỉnh cho chế độ So Sánh */
+#compare-container .bar-container {
+    height: 360px; /* Ở chế độ so sánh, khung nhỏ hơn một chút cho vừa màn hình */
+    border-color: #ced4da;
+}
 .evaluate{
+    visibility: visible;
     display: flex;
     align-items: center;
     justify-content: space-around;

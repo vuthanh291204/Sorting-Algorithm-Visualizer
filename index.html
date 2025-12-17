@@ -15,7 +15,7 @@
     </head>
     <body>
         <h2>Sorting Algorithm Visualization Tool</h2>
-        <div class="algo-selection">
+        <!-- <div class="algo-selection">
             <p id="algorithm">Algorithm:</p>
             <select id="selection1">
                 <option selected value="1">Bubble Sort</option>
@@ -25,17 +25,52 @@
                 <option value="5">Merge Sort</option>
                 <option value="6">Radix Sort</option>
             </select>
+        </div> -->
+        
+        <div class="mode">
+            <div class="set-array">
+                <button id="custom">Custom Array</button>
+                <button id="random">Random Array</button>
+                <div class="input">
+                    <!-- <input type="number" placeholder="Number of elements(max 15)"> -->
+                    <input id="elements" type="text" placeholder="Numbers (<100) separated by commas (max 15 elements)">
+                    <button id="set-array">Set Array</button>
+                </div>
+            </div>
+            <div class="form-check form-switch form-check-reverse">
+                <input class="form-check-input" type="checkbox" id="switch">
+                <label class="form-check-label">Compare 2 algorithms</label>
+            </div>
         </div>
-        <button id="custom">Custom Array</button>
-        <div class="input" style="display: none">
-            <input type="number" placeholder="Number of elements(max 15)">
-            <input type="text" placeholder="Numbers separated by commas">
-            <button id="set-array" >Set Array</button>
+        
+        <div class="algo-selection">
+            <div class="algo-selection-1">
+                <p id="algorithm">Algorithm:</p>
+                <select id="selection1">
+                    <option selected value="1">Bubble Sort</option>
+                    <option value="2">Selection Sort</option>
+                    <option value="3">Insertion Sort</option>
+                    <option value="4">Quick Sort</option>
+                    <option value="5">Merge Sort</option>
+                    <option value="6">Radix Sort</option>
+                </select>
+            </div>
+            <div class="algo-selection-2">
+                <p id="algorithm">Algorithm:</p>
+                <select id="selection1">
+                    <option selected value="1">Bubble Sort</option>
+                    <option value="2">Selection Sort</option>
+                    <option value="3">Insertion Sort</option>
+                    <option value="4">Quick Sort</option>
+                    <option value="5">Merge Sort</option>
+                    <option value="6">Radix Sort</option>
+                </select>
+            </div>
         </div>
-        <button id="random">Random Array</button>
+        
         <div class="control">
             <div class="run-algo">
-                <button id="before">
+                <!-- <button id="before">
                     <i class="bi bi-rewind"></i>
                 </button>
                 <button id="play">
@@ -46,6 +81,9 @@
                 </button>
                 <button id="reset">
                     <i class="bi bi-arrow-repeat"></i>
+                </button> -->
+                <button id="play">
+                    <i class="bi bi-play"></i> Run
                 </button>
             </div>
             <div class="speed-selection">
@@ -57,13 +95,38 @@
                     <option value="4">2x</option>
                 </select>
             </div>
+        
         </div>
-        <div class="bar-container">
+        
+        <div id="single-container">
+            <div class="bar-container">
+            </div>
+        </div>
+        
+        <div id="compare-container">
+            <div class="row">
+                <div class="col-md-6 border-end">
+                    <h6 class="text-center text-primary">Chart 1</h6>
+                    <div id="bar-container-1" class="bar-container">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-center text-danger">Chart 2</h6>
+                    <div id="bar-container-2" class="bar-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="annotate"></div>
 
-        </div>
         <div class="evaluate">
-            <p id="time-complexity">Time complexity: </p>
-            <p id="stable">Stable: </p>
+            <p>
+                Time complexity: <span id="time-complexity">O(n&#178;)</span>
+            </p>
+            <p>
+                Stable: <span id="stable">Yes</span>
+            </p>
         </div>
     </body>
 </html>
