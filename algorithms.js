@@ -8,12 +8,12 @@ async function bubbleSort(bars) {
       setColor(bars[j], "yellow");
       setColor(bars[j + 1], "yellow");
 
-      await wait();
+      await wait(delay);
 
       if (getValue(bars[j]) > getValue(bars[j + 1])) {
         setColor(bars[j], "red");
         setColor(bars[j + 1], "red");
-        await wait();
+        await wait(delay);
         swap(bars[j], bars[j + 1]);
       }
 
@@ -36,7 +36,7 @@ async function selectionSort(bars) {
 
     for (let j = i + 1; j < n; j++) {
       setColor(bars[j], "yellow");
-      await wait();
+      await wait(delay);
 
       if (getValue(bars[j]) < getValue(bars[minIdx])) {
         if (minIdx !== i) setColor(bars[minIdx], "cyan");
@@ -67,7 +67,7 @@ async function insertionSort(bars) {
 
     while (j >= 0 && getValue(bars[j]) > key) {
       setColor(bars[j], "yellow");
-      await wait();
+      await wait(delay);
 
       bars[j + 1].style.height = bars[j].style.height;
 
@@ -101,7 +101,7 @@ async function partition(bars, low, high) {
   let i = low - 1;
   for (let j = low; j < high; j++) {
     setColor(bars[j], "yellow");
-    await wait();
+    await wait(delay);
 
     if (getValue(bars[j]) < pivot) {
       i++;
@@ -137,7 +137,7 @@ async function merge(bars, l, m, r) {
 
   while (i < left.length && j < right.length) {
     setColor(bars[k], "yellow");
-    await wait();
+    await wait(delay);
 
     if (left[i] <= right[j]) {
       bars[k].style.height = left[i] * 3 + "px";
@@ -154,14 +154,14 @@ async function merge(bars, l, m, r) {
     bars[k].style.height = left[i] * 3 + "px";
     i++;
     k++;
-    await wait();
+    await wait(delay);
   }
 
   while (j < right.length) {
     bars[k].style.height = right[j] * 3 + "px";
     j++;
     k++;
-    await wait();
+    await wait(delay);
   }
 
   for (let x = l; x <= r; x++) {
@@ -210,7 +210,7 @@ async function countingSortRadix(bars, exp) {
   for (let i = 0; i < n; i++) {
     setColor(bars[i], "yellow");
     bars[i].style.height = output[i] * 3 + "px";
-    await wait();
+    await wait(delay);
     setColor(bars[i], "cyan");
   }
 }
