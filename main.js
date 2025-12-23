@@ -236,12 +236,12 @@ switchMode.addEventListener("click",() => {
     if(isCompareMode){
         singleContainer.style.display = "none";
         compareContainer.style.display = "block";
-        algoSelect2.style.display = "flex";
+        algoSelect2Container.style.visibility = "visible";
     }
     else{
         singleContainer.style.display = "block";
         compareContainer.style.display = "none";
-        algoSelect2.style.display = "none";
+        algoSelect2Container.style.visibility = "hidden";
     }
     refreshUI();
 });
