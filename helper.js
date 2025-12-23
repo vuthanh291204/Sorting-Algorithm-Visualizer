@@ -16,10 +16,16 @@ async function wait(milisec){
 
 // ham doi chieu cao 2 cot
 function swap(b1, b2){
-    let temp = b1.style.height;
+    let temp1 = b1.style.height;
     b1.style.height = b2.style.height;
-    b2.style.height = temp;
+    b2.style.height = temp1;
+    let label1 = b1.querySelector(".bar-label");
+    let label2 = b2.querySelector(".bar-label");
+    let temp2 = label1.innerText;
+    label1.innerText = label2.innerText;
+    label2.innerText = temp2;
 }
+
 
 // ham doi mau cho cot
 function setColor(b, color){
@@ -30,3 +36,4 @@ function setColor(b, color){
 function getValue(b){
     return parseInt(b.style.height);
 }
+
