@@ -11,7 +11,6 @@ h2{
 .algo-selection{
     display: flex;
     align-items: center;
-    gap: 6px;
     margin-top: 20px;
     margin-bottom: 20px;
     justify-content: space-between;
@@ -38,6 +37,11 @@ h2{
     border-radius: 6px;
     border: 1px solid;
 }
+#selection2{
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid;
+}
 #custom{
     margin-right: 10px;
     padding: 6px;
@@ -50,9 +54,10 @@ h2{
     border-radius: 6px;
     border: 1px solid;
 }
-.input{
+#input{
     margin-top: 10px;
     display: none;
+    gap: 10px;
 }
 #set-array{
     height: 30px;
@@ -100,9 +105,9 @@ h2{
     gap: 6px;
 }
 .speed-selection p{
-    margin: 0px;
+    margin: 0;
 }
-#selection2{
+#select-speed{
     padding: 6px;
     border-radius: 6px;
     border: 1px solid;
@@ -116,37 +121,69 @@ h2{
 }
 /* Khung chứa chung cho mọi chế độ */
 .bar-container {
-    background-color: #f1f3f5; /* Màu nền xám nhạt */
+    background-color: #f1f3f5;  /* Màu nền xám nhạt */
     border: 2px solid #dee2e6;
     border-radius: 8px;
-    /* Flexbox để các cột xếp hàng ngang và mọc từ dưới lên */
-    display: flex;
-    align-items: flex-end;    /* Cột bám vào đáy khung */
-    justify-content: center; /* Cột nằm giữa khung */
+    display: flex;  /* Flexbox để các cột xếp hàng ngang và mọc từ dưới lên */
+    align-items: flex-end;  /* Cột bám vào đáy khung */
+    justify-content: center;    /* Cột nằm giữa khung */
     padding: 10px;
     width: 100%;
-    height: 400px;           /* Chiều cao cố định để không bị nhảy khi tạo mảng */
+    height: 400px;  /* Chiều cao cố định để không bị nhảy khi tạo mảng */
     margin-bottom: 10px;
-    overflow: hidden;        /* Cột quá cao sẽ bị cắt, không tràn ra ngoài */
+    overflow: hidden;   /* Cột quá cao sẽ bị cắt, không tràn ra ngoài */
 }
 /* Style cho từng cột */
 .bar {
     background-color: lightseagreen;
-    margin: 0 1px;            /* Khoảng cách giữa các cột */
-    width: 100%;              /* Để các cột tự chia đều không gian */
-    /* Hiệu ứng chuyển động khi đổi chiều cao và màu sắc */
-    transition: height 0.2s ease, background-color 0.2s ease;
+    margin: 0 1px;  /* Khoảng cách giữa các cột */
+    width: 60px; 
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid;
+    transition: height 0.2s ease, background-color 0.2s ease;   /* Hiệu ứng chuyển động khi đổi chiều cao và màu sắc */
+    position: relative;    /* Làm mốc tọa độ cho con số */
+    overflow: visible !important;   /* Cho phép số bay ra khỏi phạm vi cột mà không bị cắt */
+}
+/* Style số trên cột */
+.bar-label {
+    position: absolute;    /* Định vị vị trí */
+    bottom: 100%;   /* Đẩy số lên đỉnh cột (100% chiều cao cột) */
+    left: 50%;    /* Căn giữa số theo chiều ngang của cột */
+    transform: translateX(-50%);
+    margin-bottom: 6px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+
 }
 /* Tinh chỉnh cho chế độ So Sánh */
 #compare-container .bar-container {
-    height: 360px; /* Ở chế độ so sánh, khung nhỏ hơn một chút cho vừa màn hình */
+    height: 360px;  /* Ở chế độ so sánh, khung nhỏ hơn một chút cho vừa màn hình */
     border-color: #ced4da;
 }
 .evaluate{
-    visibility: visible;
+    /* visibility: visible; */
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.annotate{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    align-items: center;
+}
+#compare-container{
+    display: none;
+    margin-top: 10px;
+}
+#single-container{
+    display: block;
+    margin-top: 10px;
 }
