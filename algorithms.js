@@ -5,24 +5,24 @@ async function bubbleSort(bars) {
   let n = bars.length;
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
-      setColor(bars[j], "yellow");
-      setColor(bars[j + 1], "yellow");
+      setColor(bars[j], "orange");
+      setColor(bars[j + 1], "orange");
 
       await wait(delay);
 
       if (getValue(bars[j]) > getValue(bars[j + 1])) {
+        swap(bars[j], bars[j + 1]);
         setColor(bars[j], "red");
         setColor(bars[j + 1], "red");
         await wait(delay);
-        swap(bars[j], bars[j + 1]);
       }
 
-      setColor(bars[j], "cyan");
-      setColor(bars[j + 1], "cyan");
+      setColor(bars[j], "lightseagreen");
+      setColor(bars[j + 1], "lightseagreen");
     }
-    setColor(bars[n - i - 1], "lightgreen");
+    setColor(bars[n - i - 1], "green");
   }
-  setColor(bars[0], "lightgreen");
+  setColor(bars[0], "green");
 }
 
 // ==========================
@@ -35,26 +35,28 @@ async function selectionSort(bars) {
     setColor(bars[i], "orange");
 
     for (let j = i + 1; j < n; j++) {
-      setColor(bars[j], "yellow");
+      setColor(bars[j], "orange");
       await wait(delay);
 
       if (getValue(bars[j]) < getValue(bars[minIdx])) {
-        if (minIdx !== i) setColor(bars[minIdx], "cyan");
+        setColor(bars[minIdx], "lightseagreen");
         minIdx = j;
-        setColor(bars[minIdx], "red");
       } else {
-        setColor(bars[j], "cyan");
+        setColor(bars[j], "lightseagreen");
       }
+      await wait(delay);
     }
 
     if (minIdx !== i) {
       swap(bars[i], bars[minIdx]);
+      setColor(bars[i], "red");
+      setColor(bars[minIdx], "red");
+      await wait(delay);
     }
 
-    setColor(bars[i], "lightgreen");
+    setColor(bars[i], "green");
   }
 }
-
 // ==========================
 //  INSERTION SORT
 // ==========================
