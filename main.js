@@ -74,7 +74,6 @@ function drawBars(array, container){
         const bar = document.createElement("div");
         bar.classList.add("bar");
         bar.style.height = `${val*3}px`;
-        bar.title = val;
         const label = document.createElement("div");
         label.classList.add("bar-label");
         label.innerText = val;
