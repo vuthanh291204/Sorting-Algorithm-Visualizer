@@ -1,5 +1,5 @@
 // ====================
-// FILE: helper.js (Đã chỉnh sửa)
+// FILE: helper.js
 // ====================
 
 // Biến thời gian
@@ -53,3 +53,4 @@ function updateBar(bar, newValue) {
 function setColor(b, color) {
   b.style.backgroundColor = color;
 }
+
