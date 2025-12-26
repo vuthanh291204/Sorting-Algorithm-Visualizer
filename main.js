@@ -144,7 +144,7 @@ function generateArray(){
     if(isSorting) return;
     curArr = [];
     for(let i=0; i<7; i++){
-        curArr.push(Math.floor(Math.random()*30)+5);
+        curArr.push(Math.floor(Math.random()*95)+5);
     }
     refreshUI();
 }
