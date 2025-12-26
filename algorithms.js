@@ -65,20 +65,29 @@ async function insertionSort(bars) {
   for (let i = 1; i < n; i++) {
     let key = getValue(bars[i]);
     let j = i - 1;
+    for(let k=0; k<i; k++){
+      setColor(bars[k], "green");
+    }
+    await wait(delay);
 
     setColor(bars[i], "orange");
     await wait(delay);
 
     while (j >= 0 && getValue(bars[j]) > key) {
-      setColor(bars[j], "red");
-      updateBar(bars[j + 1], getValue(bars[j]));
-
+      setColor(bars[j], "orange");
       await wait(delay);
-      setColor(bars[j], "lightseagreen");
+
+      setColor(bars[j], "red");
+      setColor(bars[j+1], "red");
+      updateBar(bars[j + 1], getValue(bars[j]));
+      await wait(delay);
+
+      setColor(bars[j], "orange")
+      setColor(bars[j+1], "green");
+
       j--;
     }
     updateBar(bars[j + 1], key);
-    setColor(bars[i], "lightseagreen");
   }
   for (let i = 0; i < n; i++) setColor(bars[i], "green");
 }
@@ -98,22 +107,38 @@ async function quickSort(bars, low, high) {
 }
 
 async function partition(bars, low, high) {
-  let pivot = getValue(bars[high]);
-  setColor(bars[high], "violet"); // Màu Pivot
+    let pivotValue = getValue(bars[high]);
+    setColor(bars[high], "violet"); 
+    await wait(delay);
+    
+    let i = low - 1;
+    for (let j = low; j < high; j++) {
+        setColor(bars[j], "orange");
+        await wait(delay);
 
-  let i = low - 1;
-  for (let j = low; j < high; j++) {
-    setColor(bars[j], "orange");
+        if (getValue(bars[j]) < pivotValue) {
+            i++; // Mở rộng vùng nhỏ hơn
+            swap(bars[i], bars[j]);
+            setColor(bars[i], "red");
+            setColor(bars[j], "red");
+            await wait(delay);
+
+            setColor(bars[i], "lightseagreen"); 
+            setColor(bars[j], "lightseagreen");
+        } 
+        else {
+            setColor(bars[j], "lightseagreen");
+        }
+    }
+    i++; 
+    swap(bars[i], bars[high]);
+    setColor(bars[i], "red");
+    setColor(bars[high], "red");
     await wait(delay);
 
-    if (getValue(bars[j]) < pivot) {
-      i++;
-      swap(bars[i], bars[j]);
-    }
-    setColor(bars[j], "lightseagreen");
-  }
-  swap(bars[i + 1], bars[high]);
-  return i + 1;
+    setColor(bars[high], "lightseagreen");
+    setColor(bars[i], "green");
+    return i;
 }
 
 // ==========================
