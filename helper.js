@@ -1,39 +1,55 @@
-// bien thoi gian giua 2 buoc sap xep
-let delay = 1000;
+// ====================
+// FILE: helper.js (Đã chỉnh sửa)
+// ====================
 
-// bien kiem tra xem co tam dung khong
+// Biến thời gian
+let delay = 1000;
 let isPaused = false;
 
-// ham cho giua cac buoc sap xep
-async function wait(milisec){
-    return new Promise(async resole => {
-        while(isPaused){
-            await new Promise(r => setTimeout(r, 100));
-        }
-        setTimeout(() => {resole('')}, milisec);
-    });
+async function wait(milisec) {
+  return new Promise(async (resolve) => {
+    // Fixed typo
+    while (isPaused) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    setTimeout(() => {
+      resolve("");
+    }, milisec); // Fixed typo
+  });
 }
 
-// ham doi chieu cao 2 cot
-function swap(b1, b2){
-    let temp1 = b1.style.height;
-    b1.style.height = b2.style.height;
-    b2.style.height = temp1;
-    let label1 = b1.querySelector(".bar-label");
-    let label2 = b2.querySelector(".bar-label");
-    let temp2 = label1.innerText;
-    label1.innerText = label2.innerText;
-    label2.innerText = temp2;
+function swap(b1, b2) {
+  // Swap chiều cao
+  let tempHeight = b1.style.height;
+  b1.style.height = b2.style.height;
+  b2.style.height = tempHeight;
+
+  // Swap con số hiển thị
+  let label1 = b1.querySelector(".bar-label");
+  let label2 = b2.querySelector(".bar-label");
+  let tempText = label1.innerText;
+  label1.innerText = label2.innerText;
+  label2.innerText = tempText;
 }
 
-
-// ham doi mau cho cot
-function setColor(b, color){
-    b.style.backgroundColor = color;
+// Hàm mới: Dùng cho Merge Sort, Insertion Sort khi gán đè giá trị
+// Thêm vào helper.js
+function getValue(bar) {
+  const label = bar.querySelector(".bar-label");
+  return label ? parseInt(label.innerText) : 0;
 }
 
-// ham lay gia tri so tu chieu cao cot
-function getValue(b){
-    return parseInt(b.style.height);
+function updateBar(bar, newValue) {
+  // 1. Cập nhật chiều cao để mắt người thấy
+  bar.style.height = `${newValue * 3}px`;
+
+  // 2. CẬP NHẬT GIÁ TRỊ THỰC
+  const label = bar.querySelector(".bar-label");
+  if (label) {
+    label.innerText = newValue;
+  }
 }
 
+function setColor(b, color) {
+  b.style.backgroundColor = color;
+}
