@@ -118,17 +118,16 @@ async function partition(bars, low, high) {
 
         if (getValue(bars[j]) < pivotValue) {
             i++; // Mở rộng vùng nhỏ hơn
-            swap(bars[i], bars[j]);
-            setColor(bars[i], "red");
-            setColor(bars[j], "red");
-            await wait(delay);
+            if(j > i){
+              swap(bars[i], bars[j]);
+              setColor(bars[i], "red");
+              setColor(bars[j], "red");
+              await wait(delay);
 
-            setColor(bars[i], "lightseagreen"); 
-            setColor(bars[j], "lightseagreen");
+              setColor(bars[i], "lightseagreen"); 
+            }
         } 
-        else {
-            setColor(bars[j], "lightseagreen");
-        }
+        setColor(bars[j], "lightseagreen");
     }
     i++; 
     swap(bars[i], bars[high]);
@@ -147,23 +146,40 @@ async function partition(bars, low, high) {
 async function mergeSort(bars, l, r) {
   if (l >= r) return;
   let mid = Math.floor((l + r) / 2);
+  for(let i = l; i <= mid; i++){
+    setColor(bars[i], "yellow");
+  }
+  for(let i = mid + 1; i <= r ; i++){
+    setColor(bars[i], "hotpink");
+  }
+  await wait(delay);
+
+  for(let i = l; i <= mid; i++){
+    setColor(bars[i], "lightseagreen");
+  }
+  for(let i = mid + 1; i <= r ; i++){
+    setColor(bars[i], "lightseagreen");
+  }
   await mergeSort(bars, l, mid);
   await mergeSort(bars, mid + 1, r);
   await merge(bars, l, mid, r);
+  for(let i = l; i <= r; i++){
+    setColor(bars[i], "green");
+  }
 }
 
 async function merge(bars, l, m, r) {
-  let leftArr = [],
-    rightArr = [];
+  for(let i = l; i <= r; i++){
+    setColor(bars[i], "blue");
+  }
+  await wait(delay);
+
+  let leftArr = [], rightArr = [];
   for (let i = 0; i < m - l + 1; i++) leftArr.push(getValue(bars[l + i]));
   for (let j = 0; j < r - m; j++) rightArr.push(getValue(bars[m + 1 + j]));
 
-  let i = 0,
-    j = 0,
-    k = l;
+  let i = 0, j = 0, k = l;
   while (i < leftArr.length && j < rightArr.length) {
-    setColor(bars[k], "orange");
-    await wait(delay);
     if (leftArr[i] <= rightArr[j]) {
       updateBar(bars[k], leftArr[i]);
       i++;
@@ -172,21 +188,25 @@ async function merge(bars, l, m, r) {
       j++;
     }
     setColor(bars[k], "green");
+    await wait(delay);
     k++;
   }
   while (i < leftArr.length) {
-    await wait(delay);
     updateBar(bars[k], leftArr[i]);
     setColor(bars[k], "green");
+    await wait(delay);
     i++;
     k++;
   }
   while (j < rightArr.length) {
-    await wait(delay);
     updateBar(bars[k], rightArr[j]);
     setColor(bars[k], "green");
+    await wait(delay);
     j++;
     k++;
+  }
+  for(let i = l; i <= r; i++){
+    setColor(bars[i], "lightseagreen");
   }
 }
 
@@ -202,20 +222,23 @@ async function radixSort(bars) {
     let output = new Array(n);
     let count = new Array(10).fill(0);
 
-    for (let i = 0; i < n; i++)
+    for (let i = 0; i < n; i++){
       count[Math.floor(getValue(bars[i]) / exp) % 10]++;
+    }
     for (let i = 1; i < 10; i++) count[i] += count[i - 1];
     for (let i = n - 1; i >= 0; i--) {
+      setColor(bars[i], "orange");
+      await wait(delay);
       let digit = Math.floor(getValue(bars[i]) / exp) % 10;
       output[count[digit] - 1] = getValue(bars[i]);
       count[digit]--;
+      setColor(bars[i], "lightseagreen");
     }
     for (let i = 0; i < n; i++) {
-      setColor(bars[i], "orange");
-      await wait(delay);
       updateBar(bars[i], output[i]);
       setColor(bars[i], "lightseagreen");
     }
+    await wait(delay);
   }
   for (let i = 0; i < bars.length; i++) setColor(bars[i], "green");
 }
