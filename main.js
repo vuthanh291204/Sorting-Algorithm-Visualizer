@@ -278,16 +278,19 @@ playBtn.addEventListener("click", async function(){
 speedSelect.addEventListener("change", () => {
     switch(speedSelect.value){
         case "1":
-            delay = 500;
+            delay = 2000;
             break;
         case "2":
-            delay = 1000;
+            delay = 1000/3*4;
             break;
         case "3":
-            delay = 1500;
+            delay = 1000;
             break;
         case "4":
-            delay = 2000;
+            delay = 1000/3*2;
+            break;
+        case "5":
+            delay = 500;
             break;
         default:
             delay = 1000;
