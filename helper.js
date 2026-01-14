@@ -39,6 +39,7 @@ function getValue(bar) {
   return label ? parseInt(label.innerText) : 0;
 }
 
+/// cập nhật giá trị cột khi đổi
 function updateBar(bar, newValue) {
   // 1. Cập nhật chiều cao để mắt người thấy
   bar.style.height = `${newValue * 3}px`;
@@ -53,4 +54,5 @@ function updateBar(bar, newValue) {
 function setColor(b, color) {
   b.style.backgroundColor = color;
 }
+
 
